@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/game-tools/static/css/main.e6660747.css",
+    "main.js": "/game-tools/static/js/main.0fae483d.js",
+    "static/media/hsr_icon.webp": "/game-tools/static/media/hsr_icon.176bc3fe325cdd25316d.webp",
+    "static/media/Type_Imaginary.webp": "/game-tools/static/media/Type_Imaginary.e6c4769586570b627666.webp",
+    "static/media/Type_Ice.webp": "/game-tools/static/media/Type_Ice.6cb1912344fbb5a46de1.webp",
+    "static/media/Type_Physical.webp": "/game-tools/static/media/Type_Physical.f29e00a9553c2c295e88.webp",
+    "static/media/Type_Lightning.webp": "/game-tools/static/media/Type_Lightning.ddb0c5e56f58518ad3d5.webp",
+    "static/media/Type_Wind.webp": "/game-tools/static/media/Type_Wind.0e9f4a5ba6c905479e5a.webp",
+    "static/media/Type_Fire.webp": "/game-tools/static/media/Type_Fire.e71dcb358ce1e45fb2aa.webp",
+    "static/media/Type_Quantum.webp": "/game-tools/static/media/Type_Quantum.bfd0f1f02a88238b02d8.webp",
+    "static/media/Icon_Break_Effect.webp": "/game-tools/static/media/Icon_Break_Effect.0306fdcd80444458ab64.webp",
+    "static/media/Icon_ATK.webp": "/game-tools/static/media/Icon_ATK.03138c406adb0fc472a0.webp",
+    "index.html": "/game-tools/index.html",
+    "static/media/info_24dp.svg": "/game-tools/static/media/info_24dp.0bbd8118ab8d0adbeb75e6367b13438a.svg",
+    "static/media/menu_open.svg": "/game-tools/static/media/menu_open.b7231677421711ef1a4e14958cc52994.svg",
+    "static/media/menu_close.svg": "/game-tools/static/media/menu_close.de15f1a3214fccfd14e91fb257ef7efa.svg",
+    "static/media/arrow_drop_down_24dp.svg": "/game-tools/static/media/arrow_drop_down_24dp.0fc4319830bfe969db9200eb2b999a48.svg",
+    "static/media/arrow_drop_up_24dp.svg": "/game-tools/static/media/arrow_drop_up_24dp.eb190bd1ddd4a2c34b853323a334ce40.svg",
+    "main.e6660747.css.map": "/game-tools/static/css/main.e6660747.css.map",
+    "main.0fae483d.js.map": "/game-tools/static/js/main.0fae483d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6660747.css",
+    "static/js/main.0fae483d.js"
+  ]
+}
