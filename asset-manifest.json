@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/game-tools/static/css/main.e6660747.css",
-    "main.js": "/game-tools/static/js/main.0fae483d.js",
-    "static/media/hsr_icon.webp": "/game-tools/static/media/hsr_icon.176bc3fe325cdd25316d.webp",
+    "main.css": "/game-tools/static/css/main.041b3ba6.css",
+    "main.js": "/game-tools/static/js/main.9aea3b49.js",
+    "static/media/icon_mhw.webp": "/game-tools/static/media/icon_mhw.b878227cd3d88576b481.webp",
+    "static/media/icon_hsr.webp": "/game-tools/static/media/icon_hsr.176bc3fe325cdd25316d.webp",
     "static/media/Type_Imaginary.webp": "/game-tools/static/media/Type_Imaginary.e6c4769586570b627666.webp",
     "static/media/Type_Ice.webp": "/game-tools/static/media/Type_Ice.6cb1912344fbb5a46de1.webp",
     "static/media/Type_Physical.webp": "/game-tools/static/media/Type_Physical.f29e00a9553c2c295e88.webp",
@@ -18,11 +19,11 @@
     "static/media/menu_close.svg": "/game-tools/static/media/menu_close.de15f1a3214fccfd14e91fb257ef7efa.svg",
     "static/media/arrow_drop_down_24dp.svg": "/game-tools/static/media/arrow_drop_down_24dp.0fc4319830bfe969db9200eb2b999a48.svg",
     "static/media/arrow_drop_up_24dp.svg": "/game-tools/static/media/arrow_drop_up_24dp.eb190bd1ddd4a2c34b853323a334ce40.svg",
-    "main.e6660747.css.map": "/game-tools/static/css/main.e6660747.css.map",
-    "main.0fae483d.js.map": "/game-tools/static/js/main.0fae483d.js.map"
+    "main.041b3ba6.css.map": "/game-tools/static/css/main.041b3ba6.css.map",
+    "main.9aea3b49.js.map": "/game-tools/static/js/main.9aea3b49.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6660747.css",
-    "static/js/main.0fae483d.js"
+    "static/css/main.041b3ba6.css",
+    "static/js/main.9aea3b49.js"
   ]
 }
