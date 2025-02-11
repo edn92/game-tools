@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
-import InputField from './InputField';
-import InputFieldRadio from './InputFieldRadio';
-import physIcon from '../assets/Type_Physical.webp'
-import fireIcon from '../assets/Type_Fire.webp';
-import iceIcon from '../assets/Type_Ice.webp';
-import lightningIcon from '../assets/Type_Lightning.webp';
-import windIcon from '../assets/Type_Wind.webp';
-import quantumIcon from '../assets/Type_Quantum.webp';
-import imaginaryIcon from '../assets/Type_Imaginary.webp';
+import React, {useState} from 'react';
+import InputField from '../InputField';
+import InputFieldRadio from '../InputFieldRadio';
+import physIcon from '../../assets/hsr/Type_Physical.webp'
+import fireIcon from '../../assets/hsr/Type_Fire.webp';
+import iceIcon from '../../assets/hsr/Type_Ice.webp';
+import lightningIcon from '../../assets/hsr/Type_Lightning.webp';
+import windIcon from '../../assets/hsr/Type_Wind.webp';
+import quantumIcon from '../../assets/hsr/Type_Quantum.webp';
+import imaginaryIcon from '../../assets/hsr/Type_Imaginary.webp';
 
 function BreakDamageForm(){
     //let scalingAttribute = 0; //attack% for example
@@ -23,14 +23,7 @@ function BreakDamageForm(){
     function handleHPChange(event){
         setMaxHP(prevMaxHP => event.target.value);
     }
-    /*{['physical', 'fire', 'lightning', 'wind'].includes(eleType) ? 
-                <InputField
-                label='Scaling Attribute'
-                name='scalingAttribute' 
-                type='number' 
-                defaultValue='0'
-                placeholder='0' />
-            : null}*/
+    
     return(
         <div className='content'>
             <h2>Break Modifiers</h2>

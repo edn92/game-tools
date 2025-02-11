@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import InputField from './InputField'
-import InputFieldRadio from './InputFieldRadio';
-import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../Utilities/Utils';
+import InputField from '../InputField'
+import InputFieldRadio from '../InputFieldRadio';
+import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../../Utilities/Utils';
 
 function HSRDamageCalc(){
     let enemyLevel = 95;
-    let skillMulti = 0;
-    let scalingAttribute = 0;
+    let skillMulti = 50;
+    let scalingAttribute = 100;
     let critChance = 5;
     let critDamage = 50;
     let dmgMulti = 100;
@@ -58,7 +58,7 @@ function HSRDamageCalc(){
         <div className='content-container'>
             <form onSubmit={handleCalculate}>
                 <div className='calc-content'>
-                    <div className='calc-content-column-a'>
+                    <div className='calc-content-column-a max-width-column'>
                         <div className='content'>
                             <h2>Damage Calculator</h2>
                             <InputField 
@@ -140,21 +140,20 @@ function HSRDamageCalc(){
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                        <div className='calc-content-column-b-output'>
+                        <div className='max-width-column'>
                             <div className='content'>
                                 <h2>Summary</h2>
                                 <p><b>Damage:</b> {totalDamage}</p>
                                 <p><b>Average Damage:</b> {avgDmg}</p>
                                 <p><b>Maximum Damage:</b> {maxDmg}</p>
+                                <p>This calculator assumes the character is level 80 for
+                                 all calculations.</p>
                                 <div className='content-button'>
                                     <button>Calculate!</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='calc-content-column-b'>
                     </div>
                 </div>
             </form>

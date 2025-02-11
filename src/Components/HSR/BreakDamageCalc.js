@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SuperBreakForm from './SuperBreakForm';
 import BreakDamageForm from './BreakDamageForm';
-import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../Utilities/Utils';
+import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../../Utilities/Utils';
 
 function BreakDamageCalc(){
     const [sbDamage, setSBDamage] = useState(0);
@@ -14,7 +14,7 @@ function BreakDamageCalc(){
     const [addEffDescEnd, setAddEffDescEnd] = useState(''); //ending desc
     const [actionDelay, setActionDelay] = useState('');
 
-    function handleCalculate(event){
+    function calculate(event){
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
 
@@ -178,12 +178,12 @@ function BreakDamageCalc(){
 
     return (
         <div className='content-container'>
-            <form onSubmit={handleCalculate}>
+            <form onSubmit={calculate}>
                 <div className='calc-content'>
                     <div className='calc-content-column-a'>
                         <SuperBreakForm />
                     </div>
-                    <div className='calc-content-column-b'>
+                    <div className='calc-content-column-b max-width-column'>
                         <BreakDamageForm />
                         <div className='calc-content-column-b-output'>
                             <div className='content'>

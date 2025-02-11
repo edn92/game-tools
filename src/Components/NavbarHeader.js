@@ -13,7 +13,7 @@ function NavBarHeader(props){
                 {
                     props.menuOpen ?
                     <img src={arrowUp} alt='arrowUp'/> : 
-                    <img src={arrowDown} alt='arrownDown'/>
+                    <img src={arrowDown} alt='arrowDown'/>
                 }
             </div>
         </div>

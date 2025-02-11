@@ -2,9 +2,10 @@ import React, {useState} from "react";
 //import { Link } from "react-router-dom";
 import menuExpand from '../assets/menu_open.svg';
 import menuMinimise from '../assets/menu_close.svg';
-import hsrIcon from '../assets/hsr_icon.webp';
-import hsrDamageIcon from '../assets/Icon_ATK.webp';
-import hsrBreakIcon from '../assets/Icon_Break_Effect.webp'
+import hsrIcon from '../assets/hsr/icon_hsr.webp';
+import hsrDamageIcon from '../assets/hsr/Icon_ATK.webp';
+import hsrBreakIcon from '../assets/hsr/Icon_Break_Effect.webp'
+import mhwIcon from '../assets/mh/icon_mhw.webp';
 import NavBarSubMenu from './NavBarSubMenu';
 
 function NavBar(){
@@ -13,6 +14,10 @@ function NavBar(){
     const hsrMenuLinks = [
         { link: '/HSRDamageCalc', label:'Damage Calculator', icon: hsrDamageIcon},
         { link: '/HSRBreakDamCalc', label:'Break Damage Calcs', icon: hsrBreakIcon}
+    ];
+
+    const mhMenuLinks = [
+        { link: '/MHMotionValueCalc', label:'MH Calculators', icon: ''}
     ];
 
     const otherMenuLinks = [
@@ -32,6 +37,7 @@ function NavBar(){
                 minimise ?
                 <div>
                     <NavBarSubMenu menuIcon={hsrIcon} text='HSR Calculators' links={hsrMenuLinks}/>
+                    <NavBarSubMenu menuIcon={mhwIcon} text='MH Calcs' links={mhMenuLinks}/>
                     <NavBarSubMenu text='Links' links={otherMenuLinks}/>
                 </div>
                 : null

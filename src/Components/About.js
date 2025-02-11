@@ -2,7 +2,7 @@ import React from 'react';
 
 function About(){
     return (
-        <div className='content'>
+        <div className='content max-width-column'>
             <p>
                 Just some small tools developed for various games. 
                 I plan on expanding this to include some tools for MH:Wilds.
