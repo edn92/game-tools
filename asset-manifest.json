@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/game-tools/static/css/main.041b3ba6.css",
-    "main.js": "/game-tools/static/js/main.9aea3b49.js",
+    "main.js": "/game-tools/static/js/main.193b105b.js",
     "static/media/icon_mhw.webp": "/game-tools/static/media/icon_mhw.b878227cd3d88576b481.webp",
     "static/media/icon_hsr.webp": "/game-tools/static/media/icon_hsr.176bc3fe325cdd25316d.webp",
     "static/media/Type_Imaginary.webp": "/game-tools/static/media/Type_Imaginary.e6c4769586570b627666.webp",
@@ -12,6 +12,7 @@
     "static/media/Type_Fire.webp": "/game-tools/static/media/Type_Fire.e71dcb358ce1e45fb2aa.webp",
     "static/media/Type_Quantum.webp": "/game-tools/static/media/Type_Quantum.bfd0f1f02a88238b02d8.webp",
     "static/media/Icon_Break_Effect.webp": "/game-tools/static/media/Icon_Break_Effect.0306fdcd80444458ab64.webp",
+    "static/media/Icon_SPD.webp": "/game-tools/static/media/Icon_SPD.90708a136b212d0a96b7.webp",
     "static/media/Icon_ATK.webp": "/game-tools/static/media/Icon_ATK.03138c406adb0fc472a0.webp",
     "index.html": "/game-tools/index.html",
     "static/media/info_24dp.svg": "/game-tools/static/media/info_24dp.0bbd8118ab8d0adbeb75e6367b13438a.svg",
@@ -20,10 +21,10 @@
     "static/media/arrow_drop_down_24dp.svg": "/game-tools/static/media/arrow_drop_down_24dp.0fc4319830bfe969db9200eb2b999a48.svg",
     "static/media/arrow_drop_up_24dp.svg": "/game-tools/static/media/arrow_drop_up_24dp.eb190bd1ddd4a2c34b853323a334ce40.svg",
     "main.041b3ba6.css.map": "/game-tools/static/css/main.041b3ba6.css.map",
-    "main.9aea3b49.js.map": "/game-tools/static/js/main.9aea3b49.js.map"
+    "main.193b105b.js.map": "/game-tools/static/js/main.193b105b.js.map"
   },
   "entrypoints": [
     "static/css/main.041b3ba6.css",
-    "static/js/main.9aea3b49.js"
+    "static/js/main.193b105b.js"
   ]
 }
