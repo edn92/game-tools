@@ -9,7 +9,7 @@ function InputFieldDropdown(props){
     return (
         <div className='content-form'>
             <div className='content-label'>
-                <label htmlFor={props.name}>{props.label}: </label>
+                <label>{props.label}: </label>
                 {tooltipData !== undefined && <TooltipComp text={tooltipData.text} />}
             </div>
             <MenuDropdown 

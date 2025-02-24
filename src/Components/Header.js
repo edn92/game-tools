@@ -4,7 +4,7 @@ function Header(){
     return (
         <div className='header'>
             <div className='header-container'>
-                <label>Glorified Spreadsheet</label>
+                <label>Game Tools</label>
             </div>
         </div>
     );

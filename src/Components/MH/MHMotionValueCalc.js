@@ -21,7 +21,7 @@ function MHMotionValueCalc(){
         let physHitzone = convertPercentage(checkIfExceedsHundredPercent(formData.get('monPhysHitzone')));
         let eleHitzone = convertPercentage(checkIfExceedsHundredPercent(formData.get('monEleHitzone')));
         
-        const importArray = moveSetData(formData.get('weaponType'));//dualBladesData();
+        const importArray = moveSetData(formData.get('weaponType'));
         const moveSetArray = [];
         for (let i =0; i < importArray.length; i++){
             //[0] is raw, [1] is ele

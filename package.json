@@ -4,6 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/system": "^6.4.3",
+    "@mui/x-charts": "^7.27.0",
     "cra-template": "1.2.0",
     "g": "^2.0.1",
     "npm": "^11.1.0",

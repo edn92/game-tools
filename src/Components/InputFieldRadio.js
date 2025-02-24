@@ -1,24 +1,5 @@
 import React from 'react';
 
-
-/*<span className='content-span'>
-            <div className='radio-tile'>
-                <input
-                    type='radio'
-                    name={props.name}
-                    value={props.value}
-                    defaultChecked={props.checked}
-                    />
-                {
-                    props.icon !== '' ?
-                    <img 
-                        className='content-icon'
-                        src={props.icon}
-                        alt={props.alt}
-                    /> : null
-                }
-            </div>
-        </span> */
 function InputFieldRadio(props){
     let radioTileType;
 
@@ -33,16 +14,7 @@ function InputFieldRadio(props){
             radioTileType = 'radio-tile'    
             break;
     }
-    /*{
-                props.icon !== '' ?
-                <div class={radioTileType}>
-                    <img 
-                        className='content-icon'
-                        src={props.icon}
-                        alt={props.alt}
-                    /> 
-                </div>: null
-            } */
+    
     return(
         <div className='content-radio'>
             <input

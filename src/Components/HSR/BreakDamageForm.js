@@ -14,7 +14,16 @@ function BreakDamageForm(){
     //let toughnessBar = 30;
     const [eleType, setEleType] = useState('physical'); //default
     const [maxHP, setMaxHP] = useState(10000);
-    
+    const elements = [
+        { value: 'physical', icon: physIcon, checked: true, tileType:'start' },
+        { value: 'fire', icon: fireIcon, checked: false, tileType:'' },
+        { value: 'ice', icon: iceIcon, checked: false, tileType:'' },
+        { value: 'lightning', icon: lightningIcon, checked: false, tileType:'' },
+        { value: 'wind', icon: windIcon, checked: false, tileType:'' },
+        { value: 'quantum', icon: quantumIcon, checked: false, tileType:'' },
+        { value: 'imaginary', icon: imaginaryIcon, checked: false, tileType:'end' }
+    ];
+
     function onChangeElement(event){
         let element = (event.target.value);
         setEleType(prevEleType => element);
@@ -36,50 +45,17 @@ function BreakDamageForm(){
             <fieldset onChange={onChangeElement}>
                 <label>Element Type: </label><br/><br/>
                 <div className='content-radio-group'>
-                    <InputFieldRadio 
-                        name='eleType' 
-                        value='physical'
-                        useIcon={true} 
-                        icon={physIcon} 
-                        checked={true}
-                        tileType='start' />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='fire'
-                        useIcon={true} 
-                        icon={fireIcon}
-                        checked={false} />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='ice'
-                        useIcon={true} 
-                        icon={iceIcon}
-                        checked={false} />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='lightning'
-                        useIcon={true} 
-                        icon={lightningIcon}
-                        checked={false} />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='wind'
-                        useIcon={true} 
-                        icon={windIcon}
-                        checked={false} />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='quantum'
-                        useIcon={true} 
-                        icon={quantumIcon}
-                        checked={false} />
-                    <InputFieldRadio 
-                        name='eleType'
-                        value='imaginary'
-                        useIcon={true} 
-                        icon={imaginaryIcon}
-                        checked={false}
-                        tileType='end' />
+                    {
+                        elements.map((item) => 
+                            <InputFieldRadio 
+                                name='eleType'
+                                value={item.value}
+                                useIcon={true}
+                                icon={item.icon}
+                                checked={item.checked}
+                                tileType={item.tileType} />
+                        )
+                    }
                 </div>
             </fieldset>
             {eleType === 'physical' && 

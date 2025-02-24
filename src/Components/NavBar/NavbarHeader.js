@@ -1,6 +1,6 @@
 import React from 'react';
-import arrowDown from '../assets/arrow_drop_down_24dp.svg';
-import arrowUp from '../assets/arrow_drop_up_24dp.svg';
+import arrowDown from '../../assets/arrow_drop_down_24dp.svg';
+import arrowUp from '../../assets/arrow_drop_up_24dp.svg';
 
 function NavBarHeader(props){
     return (

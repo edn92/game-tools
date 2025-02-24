@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 //import { Link } from "react-router-dom";
-import menuExpand from '../assets/menu_open.svg';
-import menuMinimise from '../assets/menu_close.svg';
-import hsrIcon from '../assets/hsr/icon_hsr.webp';
-import hsrDamageIcon from '../assets/hsr/Icon_ATK.webp';
-import hsrBreakIcon from '../assets/hsr/Icon_Break_Effect.webp'
-import mhwIcon from '../assets/mh/icon_mhw.webp';
+import menuExpand from '../../assets/menu_open.svg';
+import menuMinimise from '../../assets/menu_close.svg';
+import hsrIcon from '../../assets/hsr/icon_hsr.webp';
+import hsrDamageIcon from '../../assets/hsr/Icon_ATK.webp';
+import hsrBreakIcon from '../../assets/hsr/Icon_Break_Effect.webp'
+import hsrSpeedIcon from '../../assets/hsr/Icon_SPD.webp'
+import mhwIcon from '../../assets/mh/icon_mhw.webp';
 import NavBarSubMenu from './NavBarSubMenu';
 
 function NavBar(){
@@ -13,11 +14,12 @@ function NavBar(){
 
     const hsrMenuLinks = [
         { link: '/HSRDamageCalc', label:'Damage Calculator', icon: hsrDamageIcon},
-        { link: '/HSRBreakDamCalc', label:'Break Damage Calcs', icon: hsrBreakIcon}
+        { link: '/HSRBreakDamCalc', label:'Break Damage', icon: hsrBreakIcon},
+        { link: '/HSRActionValueCalc', label:'Action Value', icon: hsrSpeedIcon }
     ];
 
     const mhMenuLinks = [
-        { link: '/MHMotionValueCalc', label:'MH Calculators', icon: ''}
+        { link: '/MHMotionValueCalc', label:'Weapon Motion Value', icon: ''}
     ];
 
     const otherMenuLinks = [

@@ -29,6 +29,14 @@
   height: 100%;
 }
 
+/*.MuiChartsTooltip-labelCell{
+  color: red;
+}
+
+.MuiChartsTooltip-cell {
+  background:black;
+}*/
+
 ::-webkit-scrollbar {
   width: 10px;
 }
