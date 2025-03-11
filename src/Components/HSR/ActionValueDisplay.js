@@ -1,8 +1,6 @@
 import React from 'react';
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
-//import { Box } from '@mui/system';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import { borderRadius } from '@mui/system';
 
 function ActionValueDisplay(props){
     const characters = ['1st Character', '2nd Character', '3rd Character', '4th Character'];
@@ -38,7 +36,8 @@ function ActionValueDisplay(props){
         'var(--color-fire)', 
         'var(--color-ice)', 
         'var(--color-imaginary)', 
-        'var(--color-wind)' ];
+        'var(--color-wind)',
+        'var(--color-quantum)' ];
 
     const chartSettings = {
         xAxis:[
@@ -49,14 +48,15 @@ function ActionValueDisplay(props){
         ],
         colors: colours,
         width: 600,
-        height: 250
+        height: 350
     };
-    
+
     return (
         <div className='content'>
             <h2>Character Move Points</h2>
             <ThemeProvider theme={theme}>
                 <ScatterChart
+                    margin={{top: 100}}
                     slotProps={{
                         loadingOverlay: {message: 'Calculating...'},
                         noDataOverlay: {message: 'Waiting for data...'}
@@ -66,40 +66,54 @@ function ActionValueDisplay(props){
                     
                     series={[
                         {
-                            label: '1st Character',
+                            label: characters[0],
                             data: props.char1MV.map(
                                 (mv) => ({ 
                                     x: Math.round(mv.x * 100)/100, 
-                                    y:mv.y, id: 
-                                    mv.id })
+                                    y: mv.y, 
+                                    id: mv.id })
                                 )
                         },
                         {
-                            label: '2nd Character',
+                            label: characters[1],
                             data: props.char2MV.map(
                                 (mv) => ({ 
                                     x: Math.round(mv.x * 100)/100, 
-                                    y:mv.y, id: 
-                                    mv.id })
+                                    y: mv.y, 
+                                    id: mv.id })
                                 )
                         },
                         {
-                            label: '3rd Character',
+                            label: characters[2],
                             data: props.char3MV.map(
                                 (mv) => ({ 
                                     x: Math.round(mv.x * 100)/100, 
-                                    y:mv.y, id: 
-                                    mv.id })
+                                    y: mv.y, 
+                                    id: mv.id })
                                 )
                         },
                         {
-                            label: '4th Character',
+                            label: characters[3],
                             data: props.char4MV.map(
                                 (mv) => ({ 
                                     x: Math.round(mv.x * 100)/100, 
-                                    y:mv.y, id: 
-                                    mv.id })
+                                    y:mv.y, 
+                                    id: mv.id })
                                 )
+                        },
+                        {
+                            label: 'AA Points',
+                            data: props.aaPoints.map(
+                                (aa) => ({
+                                    x: aa.aaPoint,
+                                    y: (aa.aaChar - 0.2),
+                                    id: aa.aaID
+                                })
+                            ),
+                            valueFormatter: (aa, {dataIndex}) => {
+                                const point = props.aaPoints[dataIndex];
+                                return `Advancing next action by ${point.aaAmount}% at ${point.aaPoint}AV`;
+                            }
                         }
                     ]}
                     {...chartSettings}

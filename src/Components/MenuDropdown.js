@@ -32,14 +32,14 @@ function MenuDropdown(props){
 
     function DropdownItem(props){
         return (
-            <li className={selected === props.label? 'dropdown-active' : ''} onClick={changeSelect}>{props.label}</li>
+            <li key={props.index} className={selected === props.label? 'dropdown-active' : ''} onClick={changeSelect}>{props.label}</li>
         );
     }
 
     return (
         <div className='content-input'>
             <input type='hidden' name={props.name} value={selected}/>
-            <button onClick={changeMenuOpen}>
+            <button type='button' onClick={changeMenuOpen}>
                 <label>{selected}</label>
                 <img src={arrowDown} alt='arrowDown'/>
             </button>
@@ -47,7 +47,7 @@ function MenuDropdown(props){
                 {
                     menuOpen ? 
                     <ul>
-                        {props.list.map((item) => <DropdownItem label={item}/>)}
+                        {props.list.map((item, index) => <DropdownItem key={index} label={item}/>)}
                     </ul>
                     : null
                 }
