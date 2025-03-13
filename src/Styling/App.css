@@ -29,14 +29,6 @@
   height: 100%;
 }
 
-/*.MuiChartsTooltip-labelCell{
-  color: red;
-}
-
-.MuiChartsTooltip-cell {
-  background:black;
-}*/
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -366,7 +358,6 @@ input:hover + .radio-tile {
   border-color: var(--border-colour);
   padding: var(--standard-padding);
   margin: 0px 5px;
-  /*align-self: flex-end;*/
   transition: 0.1s;
 
   &:hover {
@@ -557,24 +548,3 @@ input:hover + .radio-tile {
   background-color:var(--section-background-colour);
   border-radius: var(--border-radii);
 }
-
-/*.dropdown-button-container {
-  display:flex;
-
-  div {
-    display:flex;
-    align-items: center;
-    color:inherit;
-    width: 100px;
-    background-color: var(--button-background-colour);
-    border: var(--border-standard);
-    border-color: var(--white-faded);
-    border-radius: var(--border-radii);
-    padding:5px;
-  }
-
-  img {
-    margin-right:auto;
-    justify-self: flex-end;
-  }
-}*/

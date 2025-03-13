@@ -38,11 +38,9 @@ function ActionValueCalc(){
         }
         
         //calculate aa graph points
-        //const aaGP = [];
         const aaGP = calcAAGraphPoints(formData);
         setGraphAAPoints([...aaGP]);
 
-        //console.log(aaGP);
         setChar1MovePoints(calcMovePoints(speeds[0], 1, aaGP));
         setChar2MovePoints(calcMovePoints(speeds[1], 2, aaGP));
         setChar3MovePoints(calcMovePoints(speeds[2], 3, aaGP));
@@ -67,7 +65,7 @@ function ActionValueCalc(){
                 }
 
                 let aaChar = formData.get(item.aaID + 'Dropdown');
-                if (aaChar === 'All') { //0 is for all characters
+                if (aaChar === 'All') {
                     for (let i = 1; i <= 4; i++) {
                         aaGP.push({ aaID: aaID, aaAmount: aaAmount, aaPoint: aaPoint, aaChar: i });
                         aaID++;
@@ -127,7 +125,6 @@ function ActionValueCalc(){
     }
 
     function removeAAPoint(id){
-        //remove from char aa arrays as well
         setAAPoints(prevAAPoints => prevAAPoints.filter(a=> a.aaID !== id));
     }
 
