@@ -42,6 +42,7 @@ function ActionValueCalc(){
         const aaGP = calcAAGraphPoints(formData);
         setGraphAAPoints([...aaGP]);
 
+        //console.log(aaGP);
         setChar1MovePoints(calcMovePoints(speeds[0], 1, aaGP));
         setChar2MovePoints(calcMovePoints(speeds[1], 2, aaGP));
         setChar3MovePoints(calcMovePoints(speeds[2], 3, aaGP));
@@ -59,9 +60,13 @@ function ActionValueCalc(){
                 } else if (aaAmount < 0){
                     aaAmount = 0;
                 }
+
                 let aaPoint = formData.get(item.aaID + 'AVPoint');
+                if (aaPoint < 0){
+                    aaPoint = 0;
+                }
+
                 let aaChar = formData.get(item.aaID + 'Dropdown');
-            //console.log('aachar: ' + aaChar);
                 if (aaChar === 'All') { //0 is for all characters
                     for (let i = 1; i <= 4; i++) {
                         aaGP.push({ aaID: aaID, aaAmount: aaAmount, aaPoint: aaPoint, aaChar: i });
@@ -74,60 +79,43 @@ function ActionValueCalc(){
             }
         );
         
-        //setGraphAAPoints([...aaGP]);
         return aaGP;
     }
 
     function calcMovePoints(speed, character, aaGP){
-        //console.log(aaGP);
         //Base action Value = 10000/SPD
         let av = 10000/speed; //av character takes based on their speed
-        let lapsedAV = 0;
+        let lapsedAV = 0; //how much av has been used so far
         let nextMove = 0; //nextmove is calculated before action advance
+        let lastMove = 0; //av at which character was last recorded
         let movePoints = [];
-        let i = 0; //aapoint index
         let mpID = 0; //id for movepoints array
         
         //find every point which this character has in graphAAPoints
         let charAAPoints = aaGP.filter(a => a.aaChar === character);
-
+        charAAPoints.sort((a, b) => a.aaPoint - b.aaPoint);
+        //console.log(charAAPoints);
         //show next action outside of the limit to see how close the next action is
         while (lapsedAV <= actionValue){ 
             lapsedAV += av;
-            nextMove = lapsedAV;
-            //console.log('nextmove is: ' + nextMove + ' before aa');
-            if (i < charAAPoints.length){
-                let gAAP = charAAPoints[i];
-                //console.log('char: ' + graphAAPoints[i].aaChar + ' aaPoint: ' + graphAAPoints[i].aaPoint);
-                if (gAAP.aaPoint <= nextMove){
-                    //amount of av to aa by
-                    let aa = (nextMove - gAAP.aaPoint) * (convertPercentage(gAAP.aaAmount));
-                    nextMove = nextMove - aa; 
-                    //console.log('nextmove ' + nextMove);
-                    movePoints.push({x: nextMove, y: character, id:mpID});
-                    mpID++; 
-                    i++;
-                    lapsedAV = nextMove;
-                } else {
-                    movePoints.push({x: nextMove, y: character, id:mpID});
-                    mpID++; 
-                    lapsedAV = nextMove;
+            nextMove = lapsedAV; //nextmove before AA is calculated
+
+            let aa = 0; //amount of av to advance forward by
+            charAAPoints.forEach((item) => {
+                if (item.aaPoint <= nextMove && item.aaPoint >= lastMove){
+                    aa = (nextMove - item.aaPoint) * (convertPercentage(item.aaAmount));
+                    nextMove = nextMove - aa;
+                    //lapsedAV = item.aaPoint; //update lapsed AV 
+                    //console.log(item);
                 }
-            } else {
-                movePoints.push({x: nextMove, y: character, id:mpID});
-                mpID++; 
-                lapsedAV = nextMove;
-            }
+            })
+            //console.log('nextmove before entered into array: ' + nextMove);
+            movePoints.push({x: nextMove, y: character, id:mpID});
+            mpID++; 
+            lastMove = nextMove;
+            lapsedAV = nextMove;
+            //console.log('lapsedAV: ' + lapsedAV + ' lastMove: ' + lastMove + ' nextMove: ' + nextMove);
         }
-        /* original
-        while (lapsedAV < actionValue){
-           lapsedAV += av;
-           if (lapsedAV <= actionValue){
-                movePoints.push({x: lapsedAV, y: character, id:increment});
-                increment++; 
-           }
-        }
-        */
 
         return movePoints;
     }

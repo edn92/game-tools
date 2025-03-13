@@ -7,7 +7,6 @@ function InputFieldDropdown(props){
     //search for tooltip on load, display tooltip icon if found
     let tooltipData = tooltipStringsData.find(item => {return item.name === props.name});  
     const menuList = props.list;
-    console.log(menuList);
 
     return (
         <div className='content-form'>
@@ -22,7 +21,7 @@ function InputFieldDropdown(props){
                     onChange={props.onChange}>
                     {
                         menuList.map((item) => 
-                            <option className='select-items' value={item.value}>{item.value}</option>
+                            <option key={item.key} className='select-items' value={item.value}>{item.value}</option>
                         )
                     }
                 </select>

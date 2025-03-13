@@ -12,13 +12,8 @@ function ActionValueDisplay(props){
                 styleOverrides: {
                     table:{
                         background: 'var(--section-background-colour)',
-                        /*border: '2px solid',
-                        borderColor: 'red',
-                        borderRadius: 'var(--border-radii)',
-                        borderRadius: 'var(--border-radii)',*/
                         td: {
                             color: 'white'
-                            //borderRadius: 'var(--border-radii'
                         }
                     }
                 }

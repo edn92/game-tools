@@ -18,7 +18,7 @@ function InputField(props){
                         <input 
                             name={props.name} 
                             type={props.type}
-                            step='0.1'
+                            step='0.01'
                             defaultValue={props.defaultValue}
                             placeholder={props.placeholder} 
                             onChange={props.onChange}

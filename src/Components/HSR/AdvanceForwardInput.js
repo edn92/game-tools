@@ -10,7 +10,12 @@ function AdvanceForwardInput(props){
     const [aaAmount, setAAAmount] = useState(10);
     const [avPoint, setAVPoint] = useState(0);
     const [character, setCharacter] = useState('All');
-    const charList = [{value: 'All'}, {value: 1},{value: 2},{value: 3},{value: 4}]
+    const charList = [
+        {key: 0, value: 'All'}, 
+        {key: 1, value: 1},
+        {key: 2, value: 2},
+        {key: 3, value: 3},
+        {key: 4, value: 4}]
     
     let avPointName = props.aaID + 'AVPoint';
     let dropDownName = props.aaID + 'Dropdown';
