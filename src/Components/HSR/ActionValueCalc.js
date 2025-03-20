@@ -4,8 +4,8 @@ import ActionValueDisplay from './ActionValueDisplay';
 import AdvanceForwardInput from './AdvanceForwardInput';
 import { convertPercentage } from '../../Utilities/Utils';
 
-let aaID = 0; //increments each time an aa is added
-
+//let aaID = 0; //increments each time an aa is added
+const avLimit = 2000; //ApocShadows current limit
 function ActionValueCalc(){
     //general speed formula: Base SPD x (1 + SPD%) + Flad SPD
     let actionValue = 1000; //maximum av to calculate for
@@ -22,6 +22,7 @@ function ActionValueCalc(){
     const [char3MovePoints, setChar3MovePoints] = useState([]);
     const [char4MovePoints, setChar4MovePoints] = useState([]);
 
+    const [aaID, setAAID] = useState(0);
     const [aaPoints, setAAPoints] = useState([]);
     const [graphAAPoints, setGraphAAPoints] = useState([]); //id, amount to aa, aa point, character to aa
     
@@ -33,8 +34,8 @@ function ActionValueCalc(){
         const speeds = [formData.get('char1'), formData.get('char2'), formData.get('char3'), formData.get('char4')];
 
         actionValue = formData.get('actionValue');
-        if (actionValue > 2000) {
-            actionValue = 2000;
+        if (actionValue > avLimit) {
+            actionValue = avLimit;
         }
         
         //calculate aa graph points
@@ -81,50 +82,65 @@ function ActionValueCalc(){
     }
 
     function calcMovePoints(speed, character, aaGP){
-        //Base action Value = 10000/SPD
-        let av = 10000/speed; //av character takes based on their speed
-        let lapsedAV = 0; //how much av has been used so far
-        let nextMove = 0; //nextmove is calculated before action advance
-        let lastMove = 0; //av at which character was last recorded
-        let movePoints = [];
-        let mpID = 0; //id for movepoints array
+        //New Action Gauge =  max(0 , Current Action Gauge – 10000 * (Advance Forward% – Action Delay%))
+        //new atv = old atv +-((10000 * %buff)/spd)
+        /* old atv = 41
+        (10000 * .25) / 130 = 19.546
+        new atv = 19.546 + 41 = 60.546 */
         
+        let av = 10000/speed;
+        let movePoints = []; //array to return
+        let mpID = 0; //id for movepoints array
+
         //find every point which this character has in graphAAPoints
         let charAAPoints = aaGP.filter(a => a.aaChar === character);
         charAAPoints.sort((a, b) => a.aaPoint - b.aaPoint);
-        //console.log(charAAPoints);
-        //show next action outside of the limit to see how close the next action is
-        while (lapsedAV <= actionValue){ 
-            lapsedAV += av;
-            nextMove = lapsedAV; //nextmove before AA is calculated
+        
+        for (let lapsedAV = 0; lapsedAV <= actionValue;){
+            let nextMove = lapsedAV + av;
 
-            let aa = 0; //amount of av to advance forward by
-            charAAPoints.forEach((item) => {
-                if (item.aaPoint <= nextMove && item.aaPoint >= lastMove){
-                    aa = (nextMove - item.aaPoint) * (convertPercentage(item.aaAmount));
-                    nextMove = nextMove - aa;
-                    //lapsedAV = item.aaPoint; //update lapsed AV 
-                    //console.log(item);
-                }
-            })
-            //console.log('nextmove before entered into array: ' + nextMove);
-            movePoints.push({x: nextMove, y: character, id:mpID});
-            mpID++; 
-            lastMove = nextMove;
+            if (charAAPoints.length > 0){
+                let aaPointsCopy = charAAPoints;
+                charAAPoints.forEach((item) => {
+                    if (item.aaPoint <= nextMove && item.aaPoint >= lapsedAV){
+                        let aaAmount = (10000 * (convertPercentage(item.aaAmount))) / speed;
+                        nextMove = checkNextMoveAfterAdvance(nextMove, aaAmount, item.aaPoint)
+                        aaPointsCopy = aaPointsCopy.filter(a => a.aaID !== item.aaID); //remove from array so it doesnt get calculated again
+                    }
+                })
+                charAAPoints = aaPointsCopy; //replace array with clean copy
+            }
+
             lapsedAV = nextMove;
-            //console.log('lapsedAV: ' + lapsedAV + ' lastMove: ' + lastMove + ' nextMove: ' + nextMove);
+            movePoints.push({x: lapsedAV, y: character, id:mpID});
+            mpID++; 
         }
 
         return movePoints;
     }
 
+    function checkNextMoveAfterAdvance(nextMove, aaAmount, aaPoint){
+        let difference = nextMove - aaPoint;
+        let x = difference - aaAmount;
+
+        //limit advance forward to the aapoint if it would advance to before the aapoint
+        if (x < 0){
+            aaAmount =  aaAmount + x; 
+        }
+
+        nextMove = nextMove - aaAmount;
+        return nextMove;
+    }
+
     function addAAPoint(){
-        aaID += 1;
         let id= 'AA' + (aaID);
+        console.log('added: ' + id);
+        setAAID(prevAAID => prevAAID = prevAAID + 1);
         setAAPoints(prevAAPoints => [...prevAAPoints, {aaID: id, aaAmount: '10'}]);
     }
 
     function removeAAPoint(id){
+        console.log('delete: ' + id);
         setAAPoints(prevAAPoints => prevAAPoints.filter(a=> a.aaID !== id));
     }
 
