@@ -86,8 +86,17 @@ mark {
   align-items: center;
 
   label {
+    color: white;
     padding: 5px;
     font-size: 24px;
+    text-decoration: none;
+  }
+
+  a {
+    color: white;
+    padding: 5px;
+    font-size: 24px;
+    text-decoration: none;
   }
 }
 
@@ -130,43 +139,11 @@ table{
   border: var(--border-standard);
   border-color: var(--border-colour);
   border-collapse: collapse;
-  text-align: center;
   width: 100%;
 
-  thead{
-   background-color: var(--table-header-colour);
+  span {
+    display: inline-flex;
   }
-  
-  tbody{
-    scroll-snap-type: y mandatory;
-  }
-  
-  th{
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: var(--table-header-colour);
-    border-color: inherit;
-    padding: 5px;
-    min-width: 50px;
-    max-width: 150px;
-    cursor: pointer;
-  }
-  
-  td{
-    text-align: center;
-    padding: 5px;
-    max-width: 150px;
-  }
-
-  tr:nth-child(odd){
-    scroll-snap-align: center;
-  }
-
-  tr:nth-child(even){
-    background-color: var(--table-alternate-row);
-    scroll-snap-align: center;
-  }  
 }
 
 .table-div{
@@ -390,35 +367,6 @@ input:hover + .radio-tile {
 .input-container-minimise{
   visibility: hidden;
   max-height: 0;
-}
-
-
-/*tooltip stuff*/
-.tooltip {
-  position: absolute;
-  background-color: var(--section-background-colour);
-  padding: var(--standard-padding);
-  border-radius: var(--border-radii);
-  border: var(--border-standard);
-  border-color: var(--border-colour);
-  min-width: 200px;
-  z-index: 2;
-  transform: translateX(15%) translateY(-100%);
-  font-weight: normal;
-
-  h3{
-    margin:0px;
-  }
-
-  label {
-    font-weight: normal;
-  }
-}
-
-.tooltip-container{
-  position: relative;
-  display: flex; /*inline-block;*/
-  justify-content: center;
 }
 
 /*navbar stuff*/

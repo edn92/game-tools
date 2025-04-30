@@ -20,13 +20,13 @@ import lbgIcon from '../../assets/mh/icon_lbg.png';
 function MHWeaponForm(){
     const [isMelee, setIsMelee] = useState(true);
     const sharpnessList = [
-        { value: 'Red' },
-        { value: 'Orange' }, 
-        { value: 'Yellow' }, 
-        { value: 'Green' }, 
-        { value: 'Blue' }, 
-        { value: 'White' },
-        { value: 'Purple' }
+        { id: 0, value: 'Red' },
+        { id: 1, value: 'Orange' }, 
+        { id: 2, value: 'Yellow' }, 
+        { id: 3, value: 'Green' }, 
+        { id: 4, value: 'Blue' }, 
+        { id: 5, value: 'White' },
+        { id: 6, value: 'Purple' }
     ];
     const [sharpness, setSharpness] = useState();
     let critChance = 5, critDamage = 25, eleCritDamage = 35;
@@ -82,7 +82,6 @@ function MHWeaponForm(){
     }
 
     function onSharpnessChange(event){
-        console.log(event.target.value);
         setSharpness(event.target.value);
     }
 

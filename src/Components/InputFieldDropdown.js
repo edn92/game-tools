@@ -1,18 +1,21 @@
 import React from "react";
-//import MenuDropdown from "./MenuDropdown";
 import tooltipStringsData from '../Utilities/tooltipStringsData';
-import TooltipComp from './TooltipComp';
+import CustomTooltip from "./CustomTooltip";
 
 function InputFieldDropdown(props){
     //search for tooltip on load, display tooltip icon if found
     let tooltipData = tooltipStringsData.find(item => {return item.name === props.name});  
+
     const menuList = props.list;
 
     return (
         <div className='content-form'>
             <div className='content-label'>
                 <label>{props.label}: </label>
-                {tooltipData !== undefined && <TooltipComp text={tooltipData.text} />}
+                {
+                    tooltipData !== undefined && 
+                    <CustomTooltip text={tooltipData.text}/>
+                }
             </div>
             <div className='input-select'>
                 <select 

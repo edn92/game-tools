@@ -1,6 +1,6 @@
 import React from 'react';
 import tooltipStringsData from '../Utilities/tooltipStringsData';
-import TooltipComp from './TooltipComp';
+import CustomTooltip from './CustomTooltip';
 
 function InputField(props){
     //search for tooltip on load, display tooltip icon if found
@@ -11,7 +11,10 @@ function InputField(props){
             <div className='content-form'>
                 <div className='content-label'>
                     <label>{props.label}: </label>
-                    {tooltipData !== undefined && <TooltipComp title={props.label} text={tooltipData.text} />}
+                    {
+                        tooltipData !== undefined && 
+                        <CustomTooltip text={tooltipData.text}/>
+                    }
                 </div>
                 <div className='content-input'>
                     { props.type === 'number' ?

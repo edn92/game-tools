@@ -1,6 +1,7 @@
 //import { Navbar } from 'react-bootstrap';
 import './Styling/App.css';
 import Header from './Components/Header';
+import HomePage from './Components/HomePage';
 import HSRDamageCalc from './Components/HSR/HSRDamageCalc';
 import BreakDamageCalc from './Components//HSR/BreakDamageCalc';
 import ActionValueCalc from './Components/HSR/ActionValueCalc';
@@ -16,11 +17,13 @@ function App() {
       <Header />
       <NavBar />
       <Routes>
-        <Route path='HSRDamageCalc' element={<HSRDamageCalc />}/>
+        <Route path='game-tools' element={<HomePage/>} />
+        <Route path='HSRDamageCalc' element={<HSRDamageCalc />} />
         <Route path='HSRBreakDamCalc' element={<BreakDamageCalc />} />
         <Route path='HSRActionValueCalc' element={<ActionValueCalc />} />
         <Route path='MHMotionValueCalc' element={<MHMotionValueCalc />} />
         <Route path='/About' element={<About />} />
+        <Route path='*' element={<HomePage />} />
       </Routes>
       <Footer />
     </div>

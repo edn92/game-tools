@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header(){
     return (
         <div className='header'>
             <div className='header-container'>
-                <label>Game Tools</label>
+                <Link to='game-tools'>Game Tools</Link>
             </div>
         </div>
     );

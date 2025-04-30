@@ -11,10 +11,10 @@ function ActionValueCalc(){
     let actionValue = 1000; //maximum av to calculate for
 
     const numChars = [
-        { label: `1st Character's speed`, name: 'char1'},
-        { label: `2nd Character's speed`, name: 'char2'},
-        { label: `3rd Character's speed`, name: 'char3'},
-        { label: `4th Character's speed`, name: 'char4'}
+        { id: 0, label: `1st Character's speed`, name: 'char1'},
+        { id: 1, label: `2nd Character's speed`, name: 'char2'},
+        { id: 2, label: `3rd Character's speed`, name: 'char3'},
+        { id: 3, label: `4th Character's speed`, name: 'char4'}
     ];
 
     const [char1MovePoints, setChar1MovePoints] = useState([]);

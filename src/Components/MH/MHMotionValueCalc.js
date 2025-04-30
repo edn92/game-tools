@@ -30,6 +30,7 @@ function MHMotionValueCalc(){
                 physHitzone, eleHitzone);
             
             let row = {
+                id: i,
                 name: importArray[i].name, 
                 motionValue: importArray[i].motionValue, 
                 elementMod: importArray[i].elementMod, 
