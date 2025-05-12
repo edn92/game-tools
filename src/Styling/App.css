@@ -45,6 +45,16 @@
   background: var(--button-hover)
 }
 
+/*@keyframes icon-rotate {
+  0%  { rotate: 0deg; }
+  100%{ rotate: 180deg; }
+
+.flip-arrow-icon {
+  animation-name: icon-rotate;
+  animation-duration: 1s;
+}
+}*/
+
 fieldset {
   border: none;
   margin: 0px;
@@ -54,6 +64,10 @@ fieldset {
 mark {
   background-color: rgba(0, 0, 0, 0);
   font-weight: bold;
+}
+
+.div-text-summary {
+  padding: var(--standard-padding);
 }
 
 .container {
@@ -123,10 +137,6 @@ mark {
     margin: 0px;
     text-align: center;
   }
-
-  /*label{
-    font-weight: bold;
-  }*/
 }
 
 .table-container{
@@ -341,6 +351,54 @@ input:hover + .radio-tile {
     background-color: var(--button-hover);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
+}
+
+/*log lines stuff*/
+.log-line {
+  display:flex;
+}
+
+.log-cycle-container {
+  padding: var(--standard-padding);
+  border-bottom: var(--border-standard);
+  border-color: var(--border-colour);
+  
+  label {
+    font-weight: bold;
+  }
+
+  button{
+    background-color: var(--transparent);
+    border: none;
+    
+    /*&:hover {
+      background-color: var(--button-hover);
+    }*/
+  }
+}
+
+.log-cycle-expandable {
+  display:flex;
+}
+
+.log-cycle-text {
+  flex: 9;
+}
+
+.log-cycle-expandable-icon {
+  flex: 1;
+  /*justify-content:flex-end;*/
+}
+
+.log-line-timestamp {
+  flex: 1;
+  text-align: right;
+  padding: var(--standard-padding);
+}
+
+.log-line-action {
+  flex: 9;
+  padding: var(--standard-padding);
 }
 
 .input-container-icon-bar{

@@ -40,7 +40,7 @@ function AdvanceForwardInput(props){
         <div className='input-container'>
             <div className='input-container-icon-bar'>
                 <button type='button' onClick={handleVisible}>
-                    <img src={visible ? arrowDownIcon : arrowUpIcon} alt='Expand/Minimise'/>
+                    <img src={visible ? arrowUpIcon : arrowDownIcon} alt='Expand/Minimise'/>
                 </button>
                 <button type='button' onClick={props.onClick}>
                     <img src={deleteIcon} alt='Delete' />

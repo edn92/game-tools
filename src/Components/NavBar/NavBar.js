@@ -13,9 +13,9 @@ function NavBar(){
     const [minimise, setMinimise] = useState(true); //is navbar minimised
 
     const hsrMenuLinks = [
-        { link: '/HSRDamageCalc', label:'Damage Calculator', icon: hsrDamageIcon},
+        { link: '/HSRActionValueCalc', label:'Action Value', icon: hsrSpeedIcon },
         { link: '/HSRBreakDamCalc', label:'Break Damage', icon: hsrBreakIcon},
-        { link: '/HSRActionValueCalc', label:'Action Value', icon: hsrSpeedIcon }
+        { link: '/HSRDamageCalc', label:'Damage Calculator', icon: hsrDamageIcon}
     ];
 
     const mhMenuLinks = [

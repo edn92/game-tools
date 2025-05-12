@@ -9,6 +9,7 @@ const avLimit = 2000; //ApocShadows current limit
 function ActionValueCalc(){
     //general speed formula: Base SPD x (1 + SPD%) + Flad SPD
     let actionValue = 1000; //maximum av to calculate for
+    const [numCycles, setNumCycles] = useState();
 
     const numChars = [
         { id: 0, label: `1st Character's speed`, name: 'char1'},
@@ -26,6 +27,9 @@ function ActionValueCalc(){
     const [aaPoints, setAAPoints] = useState([]);
     const [graphAAPoints, setGraphAAPoints] = useState([]); //id, amount to aa, aa point, character to aa
     
+    const tempMove = [];
+    const [moveLog, setMoveLog] = useState([]);
+    
     function handleCalculate(event){
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
@@ -37,7 +41,10 @@ function ActionValueCalc(){
         if (actionValue > avLimit) {
             actionValue = avLimit;
         }
-        
+
+        let cycles = 1 + Math.ceil((actionValue - 150)/100);
+        setNumCycles(prevCycles => cycles);
+
         //calculate aa graph points
         const aaGP = calcAAGraphPoints(formData);
         setGraphAAPoints([...aaGP]);
@@ -46,6 +53,8 @@ function ActionValueCalc(){
         setChar2MovePoints(calcMovePoints(speeds[1], 2, aaGP));
         setChar3MovePoints(calcMovePoints(speeds[2], 3, aaGP));
         setChar4MovePoints(calcMovePoints(speeds[3], 4, aaGP));
+
+        setMoveLog(prevMoveLog => tempMove);
     }
 
     function calcAAGraphPoints(formData) {
@@ -106,6 +115,13 @@ function ActionValueCalc(){
                         let aaAmount = (10000 * (convertPercentage(item.aaAmount))) / speed;
                         nextMove = checkNextMoveAfterAdvance(nextMove, aaAmount, item.aaPoint)
                         aaPointsCopy = aaPointsCopy.filter(a => a.aaID !== item.aaID); //remove from array so it doesnt get calculated again
+
+                        //add to move log
+                        tempMove.push({
+                            av: parseFloat(item.aaPoint, 10),
+                            cycle: checkCycle(item.aaPoint), 
+                            char: character, 
+                            message: ` was advanced forward by ${aaAmount.toFixed(2)} AV.`});
                     }
                 })
                 charAAPoints = aaPointsCopy; //replace array with clean copy
@@ -113,6 +129,13 @@ function ActionValueCalc(){
 
             lapsedAV = nextMove;
             movePoints.push({x: lapsedAV, y: character, id:mpID});
+
+            //add to move log
+            tempMove.push({
+                av: lapsedAV,
+                cycle: checkCycle(lapsedAV), 
+                char: character, 
+                message: ' moves.'});
             mpID++; 
         }
 
@@ -132,15 +155,25 @@ function ActionValueCalc(){
         return nextMove;
     }
 
+
+    function checkCycle(av){
+        /*first cycle is 150av, every cycle after is 100av */
+        let cycle = 1;
+        if (av >= 150) {
+            cycle = Math.ceil((av-150)/100) + 1;
+            return cycle;
+        } else {
+            return cycle;
+        }
+    }
+
     function addAAPoint(){
         let id= 'AA' + (aaID);
-        console.log('added: ' + id);
         setAAID(prevAAID => prevAAID = prevAAID + 1);
         setAAPoints(prevAAPoints => [...prevAAPoints, {aaID: id, aaAmount: '10'}]);
     }
 
     function removeAAPoint(id){
-        console.log('delete: ' + id);
         setAAPoints(prevAAPoints => prevAAPoints.filter(a=> a.aaID !== id));
     }
 
@@ -199,6 +232,8 @@ function ActionValueCalc(){
                         char3MV={char3MovePoints}
                         char4MV={char4MovePoints}
                         aaPoints={graphAAPoints}
+                        moveLog={moveLog}
+                        cycles={numCycles}
                         />
                 </div>
             </div>

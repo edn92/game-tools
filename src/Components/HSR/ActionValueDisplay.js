@@ -1,10 +1,13 @@
-import React from 'react';
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
+//import InputFieldDropdown from '../InputFieldDropdown';
+import LogCycleDisplay from './LogCycleDisplay';
 
 function ActionValueDisplay(props){
     const characters = ['1st Character', '2nd Character', '3rd Character', '4th Character'];
     
+    const moveLog = props.moveLog.sort((a, b) => a.av - b.av); //assign and sort by av
+
     //overwrite default theme for mui charts
     const theme = createTheme({
         components: {
@@ -46,6 +49,11 @@ function ActionValueDisplay(props){
         height: 350
     };
 
+    const cycles = [];
+    for (let i = 1; i <= props.cycles; i ++){
+        cycles.push(i);
+    }
+    
     return (
         <div className='content'>
             <h2>Character Move Points</h2>
@@ -114,6 +122,17 @@ function ActionValueDisplay(props){
                     {...chartSettings}
                 />
             </ThemeProvider>
+            {
+                props.char1MV.length > 0 ? //only need to check for 1, since if 1 is there, all 4 will be there
+                <div className='input-container'>
+                    <h2>Character Move Log</h2>
+                    { 
+                        cycles.map((cycle) => 
+                            <LogCycleDisplay cycle={cycle} moveLog={moveLog.filter((r) => r.cycle === cycle)}/> 
+                        )
+                    }
+                </div> : null
+            }
         </div>
     );
 }
