@@ -55,6 +55,7 @@ export const moveSetData = (type) => {
             makeNewRow(moveSet, '[Mounting] Charged Slash Lv3 2nd Hit', 89, 1.5, 1.5);
             return moveSet;
         case 'sns':
+            makeNewRow(moveSet, 'Advancing Slash', 22, 1, 1);
             return moveSet;
         case 'db':
             makeNewRow(moveSet, 'Double Slash L', 8, 0.6, 0.4);
@@ -131,12 +132,23 @@ export const moveSetData = (type) => {
     }
 }
 
-function makeNewRow(moveSet, moveName, mv, eleMod, sMod) {
+export const testAPIData = (type) => {
+    const moveSet = [];
+    const url = 'https://sheetdb.io/api/v1/d36e9s13pws6n?sheet=' + type;
+    console.log(url) 
+    /*fetch('https://sheetdb.io/api/v1/d36e9s13pws6n')
+        .then((response) => response.json())
+        .then((data) => console.log(data));*/
+    return type;
+}
+
+function makeNewRow(moveSet, moveName, mv, eleMod, sMod, sharpMod) {
     let row = {
         name: moveName,
         motionValue: mv,
         elementMod: eleMod,
-        statusMod: sMod
+        statusMod: sMod,
+        sharpness: sharpMod
     };
     moveSet.push(row);
 }

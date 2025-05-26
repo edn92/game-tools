@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import NavBarHeader from './NavbarHeader';
 
@@ -22,8 +22,8 @@ function NavBarSubMenu(props){
                         props.links.map((item, index) => (
                             <li key={index}>
                                 <CustomLink to={item.link}>
-                                {item.icon !== '' && <img src={item.icon} alt={item.icon} />}
-                                {item.label}
+                                    {item.icon !== '' && <img src={item.icon} alt={item.icon} />}
+                                    {item.label}
                                 </CustomLink>
                             </li>
                         ))
@@ -40,10 +40,7 @@ function NavBarSubMenu(props){
 export default NavBarSubMenu;
 
 function CustomLink({to, children}){ //...props
-    //let path = window.location.pathname;
-    //console.log('path: ' + path);
     let resolvedPath = useResolvedPath(to);
-    //console.log(resolvedPath);
     const isActive = useMatch({path: resolvedPath.pathname, end: true});
     return (
         <Link to={to} className={isActive ? 'active' : ''}>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import MHWeaponForm from './MHWeaponForm';
 import { moveSetData } from '../../Utilities/MHMotionValueData';
 import MHMoveSet from './MHMoveSet';
@@ -21,6 +21,8 @@ function MHMotionValueCalc(){
         let physHitzone = convertPercentage(checkIfExceedsHundredPercent(formData.get('monPhysHitzone')));
         let eleHitzone = convertPercentage(checkIfExceedsHundredPercent(formData.get('monEleHitzone')));
         
+        //console.log(testAPIData(formData.get('weaponType')));
+
         const importArray = moveSetData(formData.get('weaponType'));
         const moveSetArray = [];
         for (let i =0; i < importArray.length; i++){

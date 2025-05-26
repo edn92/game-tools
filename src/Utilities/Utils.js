@@ -19,7 +19,3 @@ export const checkIfExceedsHundredPercent = (num) => {
     }
     return num;
 }
-
-/*export const roundToTwoDP = (num) => {
-    return Math.round((num * 100) / 100);
-}*/

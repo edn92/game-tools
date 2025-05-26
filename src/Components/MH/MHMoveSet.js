@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import descIcon from '../../assets/arrow_drop_down_24dp.svg';
 import ascIcon from '../../assets/arrow_drop_up_24dp.svg';
 
@@ -76,7 +76,6 @@ function MHMoveSet(props){
     const [sortBy, setSortBy] = useState({keyToSort: 'AttackName', direction: 'asc'});
     
     function sortTable(header){
-        console.log(header);
         setSortBy({
             keyToSort: header,
             direction:
@@ -89,7 +88,6 @@ function MHMoveSet(props){
     }
 
     function sortArray(arrayToSort){
-        console.log(sortBy);
         if (sortBy.direction === 'asc'){
             return arrayToSort.sort((a, b) => (a[sortBy.keyToSort] > b[sortBy.keyToSort] ? 1 : -1));
         }

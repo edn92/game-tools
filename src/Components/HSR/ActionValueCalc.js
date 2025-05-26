@@ -121,7 +121,7 @@ function ActionValueCalc(){
                             av: parseFloat(item.aaPoint, 10),
                             cycle: checkCycle(item.aaPoint), 
                             char: character, 
-                            message: ` was advanced forward by ${aaAmount.toFixed(2)} AV.`});
+                            message: ` advances forward by ${aaAmount.toFixed(2)} AV.`});
                     }
                 })
                 charAAPoints = aaPointsCopy; //replace array with clean copy
