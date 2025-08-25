@@ -1,21 +1,31 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import InputField from '../InputField';
-import ActionValueDisplay from './ActionValueDisplay';
+import ActionValueChartDisplay from './ActionValueChartDisplay';
 import AdvanceForwardInput from './AdvanceForwardInput';
 import { convertPercentage } from '../../Utilities/Utils';
+import InputFieldDropdown from '../InputFieldDropdown';
 
 //let aaID = 0; //increments each time an aa is added
 const avLimit = 2000; //ApocShadows current limit
 function ActionValueCalc(){
     //general speed formula: Base SPD x (1 + SPD%) + Flad SPD
     let actionValue = 1000; //maximum av to calculate for
+    
+    const modeList = [
+        {value:'Memory of Chaos'},
+        {value:'Pure Fiction'},
+        {value:'Apocalyptic Shadow'},
+        {value:'Anomaly Arbitration'}, ]
+
+    const [mode, setMode] = useState('Memory of Chaos');
+
     const [numCycles, setNumCycles] = useState();
 
     const numChars = [
-        { id: 0, label: `1st Character's speed`, name: 'char1'},
-        { id: 1, label: `2nd Character's speed`, name: 'char2'},
-        { id: 2, label: `3rd Character's speed`, name: 'char3'},
-        { id: 3, label: `4th Character's speed`, name: 'char4'}
+        { label: `1st Character's speed`, name: 'char1', value: 1},
+        { label: `2nd Character's speed`, name: 'char2', value: 2},
+        { label: `3rd Character's speed`, name: 'char3', value: 3},
+        { label: `4th Character's speed`, name: 'char4', value: 4}
     ];
 
     const [char1MovePoints, setChar1MovePoints] = useState([]);
@@ -29,7 +39,11 @@ function ActionValueCalc(){
     
     const tempMove = [];
     const [moveLog, setMoveLog] = useState([]);
-    
+
+    function onChangeMode(event){
+        setMode(prevMode => event.target.value);
+    }
+
     function handleCalculate(event){
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
@@ -63,7 +77,7 @@ function ActionValueCalc(){
 
         aaPoints.forEach((item) => {
                 let aaAmount = formData.get(item.aaID);
-                if (aaAmount > 100){
+                if (aaAmount > 100){ //aamount cannot be <0 or > 100
                     aaAmount = 100;
                 } else if (aaAmount < 0){
                     aaAmount = 0;
@@ -74,16 +88,20 @@ function ActionValueCalc(){
                     aaPoint = 0;
                 }
 
-                let aaChar = formData.get(item.aaID + 'Dropdown');
-                if (aaChar === 'All') {
-                    for (let i = 1; i <= 4; i++) {
-                        aaGP.push({ aaID: aaID, aaAmount: aaAmount, aaPoint: aaPoint, aaChar: i });
-                        aaID++;
+                //check if box is ticked, add to array if it is
+                for (let i = 0; i < numChars.length; i++){
+                    let checkBox = document.getElementById(item.aaID + '-' + i);
+                    if (checkBox.checked){
+                        let aaType = formData.get(item.aaID + 'TypeInput');
+                        aaGP.push({ aaID: aaID, 
+                                    aaType: aaType, 
+                                    aaAmount: aaAmount, 
+                                    aaPoint: aaPoint, 
+                                    aaChar: numChars[i].value });
                     }
-                } else {
-                    aaGP.push({ aaID: aaID, aaAmount: aaAmount, aaPoint: aaPoint, aaChar: parseInt(aaChar) });
-                    aaID++;
                 }
+
+                aaID++;
             }
         );
         
@@ -109,7 +127,7 @@ function ActionValueCalc(){
             let nextMove = lapsedAV + av;
 
             if (charAAPoints.length > 0){
-                let aaPointsCopy = charAAPoints;
+                let aaPointsCopy = charAAPoints; 
                 charAAPoints.forEach((item) => {
                     if (item.aaPoint <= nextMove && item.aaPoint >= lapsedAV){
                         let aaAmount = (10000 * (convertPercentage(item.aaAmount))) / speed;
@@ -121,7 +139,7 @@ function ActionValueCalc(){
                             av: parseFloat(item.aaPoint, 10),
                             cycle: checkCycle(item.aaPoint), 
                             char: character, 
-                            message: ` advances forward by ${aaAmount.toFixed(2)} AV.`});
+                            message: ` uses ${item.aaType} to advance forward by ${aaAmount.toFixed(2)} AV.`}); //(${item.aaAmount}%)
                     }
                 })
                 charAAPoints = aaPointsCopy; //replace array with clean copy
@@ -155,12 +173,18 @@ function ActionValueCalc(){
         return nextMove;
     }
 
-
     function checkCycle(av){
-        /*first cycle is 150av, every cycle after is 100av */
+        /*  MOC and PF first cycle is 150av, every cycle after is 100av 
+            AA is 300 in first cycle, then 100 after */
         let cycle = 1;
-        if (av >= 150) {
-            cycle = Math.ceil((av-150)/100) + 1;
+        let firstCycleLength = 150;
+
+        if (mode === 'Anomaly Arbitration'){
+            firstCycleLength = 300;
+        }
+
+        if (av >= firstCycleLength) {
+            cycle = Math.ceil((av-firstCycleLength)/100) + 1;
             return cycle;
         } else {
             return cycle;
@@ -184,6 +208,13 @@ function ActionValueCalc(){
                     <div className='content'>
                         <form onSubmit={handleCalculate}>
                             <h2>Action Value Calculator</h2>
+                            <InputFieldDropdown 
+                                label='Mode'
+                                name='ModesDropdown'
+                                defaultOption={mode}
+                                list={modeList}
+                                onChange={onChangeMode} />
+                            
                             <InputField
                                 label='Action Value Limit'
                                 name='actionValue'
@@ -226,7 +257,7 @@ function ActionValueCalc(){
                     </div>
                 </div>
                 <div className='calc-content-column-b'>
-                    <ActionValueDisplay 
+                    <ActionValueChartDisplay 
                         char1MV={char1MovePoints} 
                         char2MV={char2MovePoints}
                         char3MV={char3MovePoints}

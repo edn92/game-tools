@@ -135,11 +135,13 @@ export const moveSetData = (type) => {
 export const testAPIData = (type) => {
     const moveSet = [];
     const url = 'https://sheetdb.io/api/v1/d36e9s13pws6n?sheet=' + type;
-    console.log(url) 
+    console.log(url)
+    makeNewRow(moveSet, 'testMoveName', 10, 1, 1.1, 1.2); 
+
     /*fetch('https://sheetdb.io/api/v1/d36e9s13pws6n')
         .then((response) => response.json())
         .then((data) => console.log(data));*/
-    return type;
+    return moveSet;
 }
 
 function makeNewRow(moveSet, moveName, mv, eleMod, sMod, sharpMod) {

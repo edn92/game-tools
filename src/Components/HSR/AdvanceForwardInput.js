@@ -1,24 +1,24 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import InputField from '../InputField';
-import InputFieldDropdown from '../InputFieldDropdown';
 import deleteIcon from '../../assets/delete_24dp.svg';
 import arrowDownIcon from '../../assets/arrow_drop_down_24dp.svg';
 import arrowUpIcon from '../../assets/arrow_drop_up_24dp.svg';
+import InputFieldCheckbox from '../InputFieldCheckbox';
 
 function AdvanceForwardInput(props){
     const [visible, setVisible] = useState(true);
     const [aaAmount, setAAAmount] = useState(10);
     const [avPoint, setAVPoint] = useState(0);
-    const [character, setCharacter] = useState('All');
+
     const charList = [
-        {key: 0, value: 'All'}, 
-        {key: 1, value: 1},
-        {key: 2, value: 2},
-        {key: 3, value: 3},
-        {key: 4, value: 4}]
+        {key: 0, name: 'check0', value: 1},
+        {key: 1, name: 'check1', value: 2},
+        {key: 2, name: 'check2', value: 3},
+        {key: 3, name: 'check3', value: 4}]
     
+    let aaTypeName = props.aaID + 'TypeInput';
     let avPointName = props.aaID + 'AVPoint';
-    let dropDownName = props.aaID + 'Dropdown';
+    let formName = props.aaID + 'Checkboxes';
 
     function handleVisible(){
         setVisible(prevVisible => !prevVisible);
@@ -32,13 +32,15 @@ function AdvanceForwardInput(props){
         setAVPoint(prevAVPoint => event.target.value);
     }
 
-    function onChangeCharacter(event){
-        setCharacter(prevCharacter => event.target.value);
-    }
-    
     return (
         <div className='input-container'>
             <div className='input-container-icon-bar'>
+                <div className='input-container-icon-bar-title'>
+                    <input 
+                        name={aaTypeName}
+                        defaultValue={props.aaID}/>
+                </div>
+                
                 <button type='button' onClick={handleVisible}>
                     <img src={visible ? arrowUpIcon : arrowDownIcon} alt='Expand/Minimise'/>
                 </button>
@@ -61,12 +63,11 @@ function AdvanceForwardInput(props){
                     defaultValue={avPoint}
                     placeholder='AV Point'
                     onChange={onChangeAVP} />
-                <InputFieldDropdown 
-                    label='Character/s' 
-                    name={dropDownName} 
-                    defaultOption={character}
+                <InputFieldCheckbox 
+                    label='Character/s'
+                    name={formName}
                     list={charList}
-                    onChange={onChangeCharacter} />
+                    aaID={props.aaID} />
             </div>
         </div>
     );
