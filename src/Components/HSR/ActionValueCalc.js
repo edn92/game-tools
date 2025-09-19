@@ -12,20 +12,20 @@ function ActionValueCalc(){
     let actionValue = 1000; //maximum av to calculate for
     
     const modeList = [
-        {value:'Memory of Chaos'},
-        {value:'Pure Fiction'},
-        {value:'Apocalyptic Shadow'},
-        {value:'Anomaly Arbitration'}, ]
+        { key: 0, value:'Memory of Chaos'},
+        { key: 1, value:'Pure Fiction'},
+        { key: 2, value:'Apocalyptic Shadow'},
+        { key: 3, value:'Anomaly Arbitration'}, ]
 
     const [mode, setMode] = useState('Memory of Chaos');
 
     const [numCycles, setNumCycles] = useState();
 
     const numChars = [
-        { label: `1st Character's speed`, name: 'char1', value: 1},
-        { label: `2nd Character's speed`, name: 'char2', value: 2},
-        { label: `3rd Character's speed`, name: 'char3', value: 3},
-        { label: `4th Character's speed`, name: 'char4', value: 4}
+        { label: `Character 1 speed`, name: 'char1', value: 1},
+        { label: `Character 2 speed`, name: 'char2', value: 2},
+        { label: `Character 3 speed`, name: 'char3', value: 3},
+        { label: `Character 4 speed`, name: 'char4', value: 4}
     ];
 
     const [char1MovePoints, setChar1MovePoints] = useState([]);
@@ -56,7 +56,7 @@ function ActionValueCalc(){
             actionValue = avLimit;
         }
 
-        let cycles = 1 + Math.ceil((actionValue - 150)/100);
+        let cycles = 0 + Math.ceil((actionValue - 150)/100);
         setNumCycles(prevCycles => cycles);
 
         //calculate aa graph points
@@ -176,7 +176,7 @@ function ActionValueCalc(){
     function checkCycle(av){
         /*  MOC and PF first cycle is 150av, every cycle after is 100av 
             AA is 300 in first cycle, then 100 after */
-        let cycle = 1;
+        let cycle = 0;
         let firstCycleLength = 150;
 
         if (mode === 'Anomaly Arbitration'){
@@ -184,7 +184,7 @@ function ActionValueCalc(){
         }
 
         if (av >= firstCycleLength) {
-            cycle = Math.ceil((av-firstCycleLength)/100) + 1;
+            cycle = Math.floor((av-firstCycleLength)/100) + 1;
             return cycle;
         } else {
             return cycle;

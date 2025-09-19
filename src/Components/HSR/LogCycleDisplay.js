@@ -53,7 +53,7 @@ function LogCycleDisplay(props){
     return(
         <div className='log-cycle-container'>
             <div className='log-cycle-expandable'>
-                <div className='log-cycle-text'>
+                <div className='log-cycle-label'>
                     <label>Cycle {props.cycle}</label>
                 </div>
                 <div className='log-cycle-expandable-icon'> 
@@ -68,7 +68,5 @@ function LogCycleDisplay(props){
         </div>
     );
 }
-
-
 
 export default LogCycleDisplay;

@@ -11,7 +11,7 @@ function InputFieldDropdown(props){
     return (
         <div className='content-form'>
             <div className='content-label'>
-                <label>{props.label}: </label>
+                <label for={props.name}>{props.label}: </label>
                 {
                     tooltipData !== undefined && 
                     <CustomTooltip text={tooltipData.text}/>
@@ -19,6 +19,7 @@ function InputFieldDropdown(props){
             </div>
             <div className='input-select'>
                 <select 
+                    id={props.name}
                     name={props.name}
                     value={props.defaultOption} 
                     onChange={props.onChange}>

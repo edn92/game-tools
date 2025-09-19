@@ -14,7 +14,7 @@ function AdvanceForwardInput(props){
         {key: 0, name: 'check0', value: 1},
         {key: 1, name: 'check1', value: 2},
         {key: 2, name: 'check2', value: 3},
-        {key: 3, name: 'check3', value: 4}]
+        {key: 3, name: 'check3', value: 4}];
     
     let aaTypeName = props.aaID + 'TypeInput';
     let avPointName = props.aaID + 'AVPoint';

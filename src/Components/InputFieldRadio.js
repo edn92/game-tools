@@ -28,7 +28,7 @@ function InputFieldRadio(props){
                     className='content-icon'
                     src={props.icon}
                     alt={props.alt} />:
-                    <label>{props.value}</label>
+                    <span>{props.value}</span>
                 } 
             </div>
         </div>

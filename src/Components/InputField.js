@@ -10,7 +10,7 @@ function InputField(props){
         <>
             <div className='content-form'>
                 <div className='content-label'>
-                    <label>{props.label}: </label>
+                    <label for={props.name}>{props.label}: </label>
                     {
                         tooltipData !== undefined && 
                         <CustomTooltip text={tooltipData.text}/>
@@ -19,6 +19,7 @@ function InputField(props){
                 <div className='content-input'>
                     { props.type === 'number' ?
                         <input 
+                            id={props.name}
                             name={props.name} 
                             type={props.type}
                             step='0.01'
@@ -27,6 +28,7 @@ function InputField(props){
                             onChange={props.onChange}
                         /> : 
                         <input 
+                            id={props.name}
                             name={props.name} 
                             type={props.type}
                             defaultValue={props.defaultValue}
