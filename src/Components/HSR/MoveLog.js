@@ -3,7 +3,6 @@ import LogCycleDisplay from "./LogCycleDisplay";
 
 function MoveLog(props){
     const moveLog = props.moveLog.sort((a, b) => a.av - b.av);
-
     const filterOptions = [
         { key: 0, value: 0, label: 'All' },
         { key: 1, value: 1, label: 'Character 1' },
@@ -24,7 +23,7 @@ function MoveLog(props){
         if (props.cycles === 0) {
             cycles.push(0);
         } else {
-            for (let i = 0; i < props.cycles; i++) {
+            for (let i = 0; i <= props.cycles; i++) {
                 cycles.push(i);
             }
         }
