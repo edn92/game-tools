@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/game-tools/static/css/main.e1ddced6.css",
-    "main.js": "/game-tools/static/js/main.56ef4db7.js",
+    "main.js": "/game-tools/static/js/main.8e5172c1.js",
     "static/media/mh_splash.png": "/game-tools/static/media/mh_splash.e7970c90b8982a0d5611.png",
     "static/media/hsr_splash.webp": "/game-tools/static/media/hsr_splash.a860122e3d337151738a.webp",
     "static/media/icon_mhw.webp": "/game-tools/static/media/icon_mhw.b878227cd3d88576b481.webp",
@@ -24,10 +24,10 @@
     "static/media/arrow_drop_down_24dp.svg": "/game-tools/static/media/arrow_drop_down_24dp.0fc4319830bfe969db9200eb2b999a48.svg",
     "static/media/arrow_drop_up_24dp.svg": "/game-tools/static/media/arrow_drop_up_24dp.eb190bd1ddd4a2c34b853323a334ce40.svg",
     "main.e1ddced6.css.map": "/game-tools/static/css/main.e1ddced6.css.map",
-    "main.56ef4db7.js.map": "/game-tools/static/js/main.56ef4db7.js.map"
+    "main.8e5172c1.js.map": "/game-tools/static/js/main.8e5172c1.js.map"
   },
   "entrypoints": [
     "static/css/main.e1ddced6.css",
-    "static/js/main.56ef4db7.js"
+    "static/js/main.8e5172c1.js"
   ]
 }
