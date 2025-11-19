@@ -1,6 +1,6 @@
 import { useState } from "react";
-import arrowDown from '../../assets/arrow_drop_down_24dp.svg';
-import arrowUp from '../../assets/arrow_drop_up_24dp.svg';
+import arrowIcon from '../../assets/arrow_drop_up_24dp.svg';
+import { motion } from "motion/react";
 
 function LogCycleDisplay(props){
     const [visible, setVisible] = useState(true);
@@ -57,9 +57,12 @@ function LogCycleDisplay(props){
                     <label>Cycle {props.cycle}</label>
                 </div>
                 <div className='log-cycle-expandable-icon'> 
-                    <button type='button' onClick={handleVisible}>
-                        <img className='flip-arrow-icon' src={ visible ? arrowUp: arrowDown } alt='Expand/Minimise'/>
-                    </button>
+                    <motion.button type='button' 
+                        onClick={handleVisible} 
+                        whileHover={{scale: 1.3}} 
+                        animate={{rotate: visible ? -180 : 0}} >
+                        <img src={arrowIcon} alt='Expand/Minimise' />
+                    </motion.button> 
                 </div>
             </div>
             {

@@ -1,11 +1,46 @@
 import {useState} from 'react';
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import NavBarHeader from './NavbarHeader';
+import { motion, stagger } from 'motion/react';
 
 function NavBarSubMenu(props){
     const [isMenuOpen, setIsMenuOpen] = useState(true);
-    const minHeight = 52; //works nicely atm
-    let menuHeight = props.links.length;
+    let numMenuItems = props.links.length;
+
+    const navVariants = {
+        open: {
+            height: numMenuItems * menuHeight(),
+            transition: { delayChildren: stagger(0.02, { startDelay: 0.02 }) },
+        }, 
+        closed: {
+            height: 0,
+            transition: { delayChildren: stagger(0.01, { from: "last" }) }
+        }
+    }
+
+    const itemVariants = {
+        open: {
+            scale: 1,
+            opacity: 1,
+            x: 0,
+            transition: { x: {stiffness: 1000}}
+        },
+        closed: {
+            scale: 0,
+            opacity: 0,
+            x: -200,
+            transition: { x: {stiffness: 1000}}
+        }
+    }
+
+    function menuHeight(){
+        let x = 52; //works with current padding
+
+        if (numMenuItems > 1) {
+            x = 54;
+        }
+        return x;
+    }
 
     function changeMenuOpen(){
         setIsMenuOpen(prevIsMenuOpen => !isMenuOpen);
@@ -14,25 +49,26 @@ function NavBarSubMenu(props){
     return (
         <div>
             <NavBarHeader menuIcon={props.menuIcon} text={props.text} menuOpen={isMenuOpen} onClick={changeMenuOpen}/>
-            <div className='navbar-submenu' style={isMenuOpen ? {height: menuHeight * minHeight} : {height: 0}}>
-            {
-                isMenuOpen ?
-                <ul>
-                    {
+            <motion.nav className='navbar-submenu'>
+                <motion.ul 
+                    variants={navVariants}
+                    inital='open'
+                    animate={isMenuOpen ? 'open' : 'closed'}>
+                    { 
                         props.links.map((item, index) => (
-                            <li key={index}>
+                            <motion.li 
+                                variants={itemVariants}
+                                whileTap={{scale: 0.95}}
+                                key={index}>
                                 <CustomLink to={item.link}>
                                     {item.icon !== '' && <img src={item.icon} alt={item.icon} />}
                                     {item.label}
                                 </CustomLink>
-                            </li>
+                            </motion.li>
                         ))
                     }
-                </ul>
-                :
-                null
-            }
-            </div>
+                </motion.ul>
+            </motion.nav>
         </div>
     );
 }

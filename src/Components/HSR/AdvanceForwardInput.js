@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import InputField from '../InputField';
 import deleteIcon from '../../assets/delete_24dp.svg';
-import arrowDownIcon from '../../assets/arrow_drop_down_24dp.svg';
-import arrowUpIcon from '../../assets/arrow_drop_up_24dp.svg';
+import arrowIcon from '../../assets/arrow_drop_up_24dp.svg';
 import InputFieldCheckbox from '../InputFieldCheckbox';
+import { motion } from "motion/react";
 
 function AdvanceForwardInput(props){
     const [visible, setVisible] = useState(true);
@@ -31,7 +31,7 @@ function AdvanceForwardInput(props){
     function onChangeAVP(event){
         setAVPoint(prevAVPoint => event.target.value);
     }
-
+    
     return (
         <div className='input-container'>
             <div className='input-container-icon-bar'>
@@ -40,35 +40,41 @@ function AdvanceForwardInput(props){
                         name={aaTypeName}
                         defaultValue={props.aaID}/>
                 </div>
-                
-                <button type='button' onClick={handleVisible}>
-                    <img src={visible ? arrowUpIcon : arrowDownIcon} alt='Expand/Minimise'/>
-                </button>
-                <button type='button' onClick={props.onClick}>
+                <motion.button type='button' 
+                    onClick={handleVisible} 
+                    whileHover={{scale: 1.3}} 
+                    animate={{rotate: visible ? -180: 0}}>
+                    <img src={arrowIcon} alt='Expand/Minimise'/>
+                </motion.button>
+                <motion.button type='button' onClick={props.onClick} whileHover={{scale: 1.3}} whileTap={{y:1}}>
                     <img src={deleteIcon} alt='Delete' />
-                </button>
+                </motion.button>
             </div>
-            <div className={visible ? null : 'input-container-minimise'}>
-                <InputField 
-                    label='Action Advance%'
-                    name={props.aaID}
-                    type='number'
-                    defaultValue={aaAmount}
-                    placeholder='AA%'
-                    onChange={onChangeAA}/>
-                <InputField 
-                    label='AV Point'
-                    name={avPointName}
-                    type='number'
-                    defaultValue={avPoint}
-                    placeholder='AV Point'
-                    onChange={onChangeAVP} />
-                <InputFieldCheckbox 
-                    label='Character/s'
-                    name={formName}
-                    list={charList}
-                    aaID={props.aaID} />
-            </div>
+            {
+                visible ? (
+                        <div className={visible ? null : 'input-container-minimise'}>
+                            <InputField 
+                                label='Action Advance%'
+                                name={props.aaID}
+                                type='number'
+                                defaultValue={aaAmount}
+                                placeholder='AA%'
+                                onChange={onChangeAA}/>
+                            <InputField 
+                                label='AV Point'
+                                name={avPointName}
+                                type='number'
+                                defaultValue={avPoint}
+                                placeholder='AV Point'
+                                onChange={onChangeAVP} />
+                            <InputFieldCheckbox 
+                                label='Character/s'
+                                name={formName}
+                                list={charList}
+                                aaID={props.aaID} />
+                        </div>
+                ) : null
+            }
         </div>
     );
 }

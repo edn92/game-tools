@@ -1,4 +1,3 @@
-import React from "react";
 import tooltipStringsData from '../Utilities/tooltipStringsData';
 import CustomTooltip from "./CustomTooltip";
 
@@ -11,7 +10,7 @@ function InputFieldDropdown(props){
     return (
         <div className='content-form'>
             <div className='content-label'>
-                <label for={props.name}>{props.label}: </label>
+                <label htmlFor={props.name}>{props.label}: </label>
                 {
                     tooltipData !== undefined && 
                     <CustomTooltip text={tooltipData.text}/>

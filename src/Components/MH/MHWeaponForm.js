@@ -16,6 +16,7 @@ import igIcon from '../../assets/mh/icon_ig.png';
 import bowIcon from '../../assets/mh/icon_bow.png';
 import hbgIcon from '../../assets/mh/icon_hbg.png';
 import lbgIcon from '../../assets/mh/icon_lbg.png';
+import ButtonFormSubmit from '../ButtonFormSubmit';
 
 function MHWeaponForm(){
     const [isMelee, setIsMelee] = useState(true);
@@ -230,6 +231,10 @@ function MHWeaponForm(){
                 type='number' 
                 defaultValue='20'
                 placeholder='20' />
+            
+            <div className='content-button'>
+                <ButtonFormSubmit text='Calculate!' />
+            </div>
         </div>
     );
 }

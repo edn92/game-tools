@@ -1,6 +1,5 @@
 import { ScatterChart } from '@mui/x-charts/ScatterChart';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import MoveLog from './MoveLog';
 import ChartCustomLegend from '../ChartCustomLegend';
 
 
@@ -123,11 +122,6 @@ function ActionValueChartDisplay(props){
         }
     ];
 
-    const cycles = [];
-    for (let i = 0; i <= props.cycles; i ++){
-        cycles.push(i);
-    }
-
     return (
         <div className='content'>
             <h2>Character Move Points</h2>
@@ -147,9 +141,6 @@ function ActionValueChartDisplay(props){
                     </ThemeProvider>
                     <ChartCustomLegend legendLabels={labels}/>
                 </div>
-            { 
-                props.cycles !== undefined ? <MoveLog cycles={cycles} moveLog={props.moveLog} /> : null
-            }
         </div>
     );
 }

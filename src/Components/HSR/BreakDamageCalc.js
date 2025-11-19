@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SuperBreakForm from './SuperBreakForm';
-import BreakDamageForm from './BreakDamageForm';
+import BreakModifiers from './BreakModifiers';
 import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../../Utilities/Utils';
 
 function BreakDamageCalc(){
@@ -176,6 +176,26 @@ function BreakDamageCalc(){
         setAddEffDescEnd(prevAddEffDescEnd => addEffDescEnd);
     }
 
+    const Summary = () => {
+        return (
+            <div className='calc-content-column-b-output'>
+                <div className='content'>
+                    <h2>Summary</h2>
+                    <p><b>SB Damage:</b> <mark style={{'color': effectColor}}>{sbDamage}</mark></p>
+                    <p><b>Break Damage:</b> <mark style={{'color': effectColor}}>{breakDamage}</mark></p>
+                    <p><b>Weakness Break:</b> 
+                        <mark style={{'color': effectColor}}> {effectType} </mark>
+                        {addEffDesc} 
+                        <mark style={{'color': effectColor}}>{addBreakDOT} </mark>
+                        {addEffDescEnd}
+                        <mark style={{'color': effectColor}}>{actionDelay}</mark>
+                        {actionDelay !== '' ? '%.' : ''}
+                    </p>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className='content-container'>
             <form onSubmit={calculate}>
@@ -184,28 +204,8 @@ function BreakDamageCalc(){
                         <SuperBreakForm />
                     </div>
                     <div className='calc-content-column-b max-width-column'>
-                        <BreakDamageForm />
-                        <div className='calc-content-column-b-output'>
-                            <div className='content'>
-                                <h2>Summary</h2>
-                                <p><b>SB Damage:</b> <mark style={{'color': effectColor}}>{sbDamage}</mark></p>
-                                <p><b>Break Damage:</b> <mark style={{'color': effectColor}}>{breakDamage}</mark></p>
-                                <p><b>Weakness Break:</b> 
-                                    <mark style={{'color': effectColor}}> {effectType} </mark>
-                                    {addEffDesc} 
-                                    <mark style={{'color': effectColor}}>{addBreakDOT} </mark>
-                                    {addEffDescEnd}
-                                    <mark style={{'color': effectColor}}>{actionDelay}</mark>
-                                    {actionDelay !== '' ? '%.' : ''}
-                                </p>
-                                <p>This calculator assumes the character is level 80 for
-                                 all calculations and is fighting an elite or boss enemy 
-                                 that has been weakness broken.</p>
-                                 <div className='content-button'>
-                                    <button>Calculate!</button>
-                                </div>
-                            </div>
-                        </div>
+                        <BreakModifiers />
+                        <Summary />
                     </div>
                 </div>
             </form>

@@ -9,7 +9,7 @@ import windIcon from '../../assets/hsr/Type_Wind.webp';
 import quantumIcon from '../../assets/hsr/Type_Quantum.webp';
 import imaginaryIcon from '../../assets/hsr/Type_Imaginary.webp';
 
-function BreakDamageForm(){
+function BreakModifiers(){
     //let scalingAttribute = 0; //attack% for example
     //let toughnessBar = 30;
     const [eleType, setEleType] = useState('physical'); //default
@@ -76,4 +76,4 @@ function BreakDamageForm(){
     );
 }
 
-export default BreakDamageForm;
+export default BreakModifiers;

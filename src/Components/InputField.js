@@ -10,7 +10,7 @@ function InputField(props){
         <>
             <div className='content-form'>
                 <div className='content-label'>
-                    <label for={props.name}>{props.label}: </label>
+                    <label htmlFor={props.name}>{props.label}: </label>
                     {
                         tooltipData !== undefined && 
                         <CustomTooltip text={tooltipData.text}/>

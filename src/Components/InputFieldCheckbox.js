@@ -9,7 +9,7 @@ function InputFieldCheckbox(props){
             <div className='input-select'>
                 {
                     checkBoxList.map((item) =>
-                        <div>
+                        <div className="checkbox-div">
                             <label for={`${props.aaID}-${item.key}`}>{item.value}</label>
                             <input type='checkbox' id={`${props.aaID}-${item.key}`} name={item.name} value={item.value} />
                         </div>

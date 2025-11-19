@@ -3,8 +3,7 @@ import LogCycleDisplay from "./LogCycleDisplay";
 
 function MoveLog(props){
     const moveLog = props.moveLog.sort((a, b) => a.av - b.av);
-    const cycles = props.cycles;
-    
+
     const filterOptions = [
         { key: 0, value: 0, label: 'All' },
         { key: 1, value: 1, label: 'Character 1' },
@@ -19,8 +18,34 @@ function MoveLog(props){
         setFilter(prevFilter => filterBy);
     }
 
+    const LogCycles = () => {
+        const cycles = [];
+
+        if (props.cycles === 0) {
+            cycles.push(0);
+        } else {
+            for (let i = 0; i < props.cycles; i++) {
+                cycles.push(i);
+            }
+        }
+
+        return (
+            <div>
+                {
+                    filter === 0 ?
+                        cycles.map((cycle) => 
+                            <LogCycleDisplay cycle={cycle} moveLog={moveLog.filter((r) => r.cycle === cycle)}/> 
+                        ) 
+                    : cycles.map((cycle) => 
+                            <LogCycleDisplay cycle={cycle} moveLog={moveLog.filter((r) => r.cycle === cycle && r.char === filter)}/> 
+                        ) 
+                }
+            </div>
+        )
+    }
+
     return (
-        <div className='input-container'>
+        <div>
             <div className='header-label-container'>
                 <h2>Character Move Log</h2>
                 <div className='filter-options-container'>
@@ -36,15 +61,7 @@ function MoveLog(props){
                     </select>
                 </div>
             </div>
-            {
-                filter === 0 ?
-                    cycles.map((cycle) => 
-                        <LogCycleDisplay cycle={cycle} moveLog={moveLog.filter((r) => r.cycle === cycle)}/> 
-                    ) 
-                : cycles.map((cycle) => 
-                        <LogCycleDisplay cycle={cycle} moveLog={moveLog.filter((r) => r.cycle === cycle && r.char === filter)}/> 
-                    ) 
-            }
+            <LogCycles />
         </div>
     );
 }

@@ -1,5 +1,5 @@
-import React from 'react';
 import InputField from '../InputField';
+import ButtonFormSubmit from '../ButtonFormSubmit';
 
 function SuperBreakForm(){
     let enemyLevel = 95;
@@ -65,6 +65,10 @@ function SuperBreakForm(){
                 type='number'
                 defaultValue={sBMulti} 
                 placeholder={sBMulti} />
+            
+            <div className='content-button'>
+                <ButtonFormSubmit text='Calculate!' />
+            </div>
         </div>
     );
 }

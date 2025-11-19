@@ -1,15 +1,17 @@
 import {useState} from 'react';
 import InputField from '../InputField';
 import ActionValueChartDisplay from './ActionValueChartDisplay';
+import MoveLog from './MoveLog';
 import AdvanceForwardInput from './AdvanceForwardInput';
 import { convertPercentage } from '../../Utilities/Utils';
 import InputFieldDropdown from '../InputFieldDropdown';
+import { motion } from 'motion/react';
 
 //let aaID = 0; //increments each time an aa is added
 const avLimit = 2000; //ApocShadows current limit
 function ActionValueCalc(){
     //general speed formula: Base SPD x (1 + SPD%) + Flad SPD
-    let actionValue = 1000; //maximum av to calculate for
+    let actionValue = 500; //maximum av to calculate for
     
     const modeList = [
         { key: 0, value:'Memory of Chaos'},
@@ -21,7 +23,7 @@ function ActionValueCalc(){
 
     const [numCycles, setNumCycles] = useState();
 
-    const numChars = [
+    const numOfChars = [
         { label: `Character 1 speed`, name: 'char1', value: 1},
         { label: `Character 2 speed`, name: 'char2', value: 2},
         { label: `Character 3 speed`, name: 'char3', value: 3},
@@ -34,6 +36,7 @@ function ActionValueCalc(){
     const [char4MovePoints, setChar4MovePoints] = useState([]);
 
     const [aaID, setAAID] = useState(0);
+    //const aaPointsList = [];
     const [aaPoints, setAAPoints] = useState([]);
     const [graphAAPoints, setGraphAAPoints] = useState([]); //id, amount to aa, aa point, character to aa
     
@@ -89,7 +92,7 @@ function ActionValueCalc(){
                 }
 
                 //check if box is ticked, add to array if it is
-                for (let i = 0; i < numChars.length; i++){
+                for (let i = 0; i < numOfChars.length; i++){
                     let checkBox = document.getElementById(item.aaID + '-' + i);
                     if (checkBox.checked){
                         let aaType = formData.get(item.aaID + 'TypeInput');
@@ -97,7 +100,7 @@ function ActionValueCalc(){
                                     aaType: aaType, 
                                     aaAmount: aaAmount, 
                                     aaPoint: aaPoint, 
-                                    aaChar: numChars[i].value });
+                                    aaChar: numOfChars[i].value });
                     }
                 }
 
@@ -204,6 +207,7 @@ function ActionValueCalc(){
     return (
         <div className='content-container'>
             <div className='calc-content'>
+                
                 <div className='calc-content-column-a'>
                     <div className='content'>
                         <form onSubmit={handleCalculate}>
@@ -222,7 +226,7 @@ function ActionValueCalc(){
                                 defaultValue={actionValue} 
                                 placeholder='Action Value'/>
                             {
-                                numChars.map((item) => 
+                                numOfChars.map((item) => 
                                     <InputField 
                                         label={item.label}
                                         name={item.name}
@@ -250,8 +254,8 @@ function ActionValueCalc(){
                                 : null
                             }
                             <div className='content-button'>
-                                <button type='button' onClick={addAAPoint}>Add AA point</button>
-                                <button type='submit'>Calculate!</button>
+                                <motion.button type='button' onClick={addAAPoint} whileTap={{y:1}}>Add AA Point</motion.button>
+                                <motion.button type='submit' whileTap={{y:1}}>Calculate!</motion.button>
                             </div>
                         </form>
                     </div>
@@ -267,6 +271,17 @@ function ActionValueCalc(){
                         cycles={numCycles}
                         />
                 </div>
+                { 
+                    numCycles !== undefined ? 
+                    <div className='calc-content-column-c'>
+                        <div className='flex-column-container'>
+                            <div className='content max-width-column'>
+                                <MoveLog cycles={numCycles} moveLog={moveLog} /> 
+                            </div>
+                        </div>
+                    </div> 
+                    : null
+                }    
             </div>
         </div>
     );

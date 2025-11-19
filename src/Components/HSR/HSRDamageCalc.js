@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import InputField from '../InputField'
 import InputFieldRadio from '../InputFieldRadio';
 import { convertPercentage, calculateDefMulti, checkIfExceedsHundredPercent } from '../../Utilities/Utils';
+import ButtonFormSubmit from '../ButtonFormSubmit';
 
 function HSRDamageCalc(){
     let enemyLevel = 95;
@@ -140,6 +141,9 @@ function HSRDamageCalc(){
                                     </div>
                                 </div>
                             </div>
+                            <div className='content-button'>
+                                <ButtonFormSubmit text='Calculate!' />
+                            </div>
                         </div>
                         <div className='max-width-column'>
                             <div className='content'>
@@ -147,11 +151,6 @@ function HSRDamageCalc(){
                                 <p><b>Damage:</b> {totalDamage}</p>
                                 <p><b>Average Damage:</b> {avgDmg}</p>
                                 <p><b>Maximum Damage:</b> {maxDmg}</p>
-                                <p>This calculator assumes the character is level 80 for
-                                 all calculations.</p>
-                                <div className='content-button'>
-                                    <button>Calculate!</button>
-                                </div>
                             </div>
                         </div>
                     </div>
